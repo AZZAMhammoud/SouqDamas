@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوق الشام - التجارة الإلكترونية الأصيلة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&family=Reem+Kufi:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <i class="fas fa-store"></i>
+                    <span>سوق الشام</span>
+                </div>
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link">الرئيسية</a>
+                    <a href="#categories" class="nav-link">الأقسام</a>
+                    <a href="#products" class="nav-link">المنتجات</a>
+                    <a href="#contact" class="nav-link">اتصل بنا</a>
+                </div>
+                <div class="nav-actions">
+                    <select class="currency-selector" onchange="updateCurrency(this.value)">
+                        <option value="SYP" selected>ل.س</option>
+                        <option value="USD">USD</option>
+                        <option value="TRY">TRY</option>
+                    </select>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <button class="login-btn" onclick="showLogin()">
+                        <i class="fas fa-user"></i>
+                        تسجيل الدخول
+                    </button>
+                    <button class="register-btn" onclick="showRegister()">
+                        <i class="fas fa-user-plus"></i>
+                        تسجيل
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>أهلاً وسهلاً في سوق الشام</h1>
+                <p>اكتشف كنوز دمشق الأصيلة من الحرف اليدوية والمنتجات التراثية</p>
+                <button class="cta-btn" onclick="scrollToSection("products")">
+                    تسوق الآن
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            <div class="hero-image">
+                <div class="damascus-pattern"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="ابحث في سوق الشام..." onkeyup="searchProducts()">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <h2 class="section-title">الأقسام</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="filterByCategory("handicrafts")">
+                    <div class="category-icon">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <h3>الحرف اليدوية</h3>
+                    <p>منتجات حرفية تراثية مصنوعة يدوياً</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory("perfumes")">
+                    <div class="category-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>العطور والبخور</h3>
+                    <p>عطور ومواد عطرية طبيعية</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory("sweets")">
+                    <div class="category-icon">
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+                    <h3>الحلويات الشامية</h3>
+                    <p>حلويات تراثية دمشقية أصيلة</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory("clothes")">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>الملابس التراثية</h3>
+                    <p>ملابس تقليدية وتراثية</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory("jewelry")">
+                    <div class="category-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>المجوهرات</h3>
+                    <p>مجوهرات وإكسسوارات تراثية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">المنتجات المميزة</h2>
+                <button class="view-all-btn" onclick="showAllProducts()">عرض الكل</button>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>سلة التسوق</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>المجموع: <span id="cartTotal">0</span> ل.س</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">إتمام الطلب</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>تسجيل الدخول</h3>
+                <button class="close-modal" onclick="closeModal("loginModal")">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="submit-btn">دخول</button>
+                <div class="demo-accounts">
+                    <h4>حسابات تجريبية:</h4>
+                    <p><strong>المدير:</strong> abohadar688@gmail.com / Moh678med</p>
+                    <p><strong>البائع:</strong> seller@test.com / 123456</p>
+                    <p><strong>المستخدم:</strong> user@test.com / 123456</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>إنشاء حساب جديد</h3>
+                <button class="close-modal" onclick="closeModal("registerModal")">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="register-form" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="registerName">الاسم</label>
+                    <input type="text" id="registerName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">البريد الإلكتروني</label>
+                    <input type="email" id="registerEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">كلمة المرور</label>
+                    <input type="password" id="registerPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerRole">التسجيل كـ</label>
+                    <select id="registerRole" name="role">
+                        <option value="user">مشتري</option>
+                        <option value="seller">بائع</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">تسجيل</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content admin-dashboard">
+            <div class="modal-header">
+                <h3>لوحة إدارة سوق الشام</h3>
+                <button class="close-modal" onclick="closeModal("adminModal")">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="admin-content">
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>156</h4>
+                            <p>المنتجات</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>89</h4>
+                            <p>المستخدمين</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>234</h4>
+                            <p>الطلبات</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h4>45,230</h4>
+                            <p>المبيعات (ل.س)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-actions">
+                    <button class="admin-btn">إدارة المنتجات</button>
+                    <button class="admin-btn">إدارة المستخدمين</button>
+                    <button class="admin-btn">إدارة الطلبات</button>
+                    <button class="admin-btn">التقارير</button>
+                    <button class="admin-btn" onclick="adminControlDiscountRate()">التحكم بنسبة الحسم</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seller Dashboard Modal -->
+    <div class="modal" id="sellerModal">
+        <div class="modal-content seller-dashboard">
+            <div class="modal-header">
+                <h3>لوحة تحكم البائع</h3>
+                <button class="close-modal" onclick="closeModal("sellerModal")">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="seller-content">
+                <h4>إضافة منتج جديد</h4>
+                <form onsubmit="event.preventDefault(); addProductAsSeller(document.getElementById("newProductName").value, parseFloat(document.getElementById("newProductPrice").value), document.getElementById("newProductDesc").value, document.getElementById("newProductCategory").value)">
+                    <input type="text" id="newProductName" placeholder="اسم المنتج" required>
+                    <input type="number" id="newProductPrice" placeholder="سعر المنتج (بالدولار)" required>
+                    <textarea id="newProductDesc" placeholder="وصف المنتج"></textarea>
+                    <input type="text" id="newProductCategory" placeholder="فئة المنتج" required>
+                    <button type="submit">إضافة المنتج</button>
+                </form>
+                <h4>منتجاتي</h4>
+                <!-- List of seller's products -->
+            </div>
+        </div>
+    </div>
+
+    <!-- User Dashboard Modal -->
+    <div class="modal" id="userModal">
+        <div class="modal-content user-dashboard">
+            <div class="modal-header">
+                <h3>لوحة تحكم المستخدم</h3>
+                <button class="close-modal" onclick="closeModal("userModal")">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="user-content">
+                <h4>طلباتي</h4>
+                <!-- List of user's orders -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>سوق الشام</h3>
+                    <p>منصة التجارة الإلكترونية الأصيلة للمنتجات الدمشقية التراثية</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#categories">الأقسام</a></li>
+                        <li><a href="#products">المنتجات</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +963 11 123 4567</p>
+                        <p><i class="fas fa-envelope"></i> info@soqalsham.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> دمشق، سوريا</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 سوق الشام. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+

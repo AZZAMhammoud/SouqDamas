@@ -1,0 +1,68 @@
+name: soqaly_app
+description: تطبيق Soqaly للتجارة الإلكترونية
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # UI Components
+  cupertino_icons: ^1.0.2
+  material_design_icons_flutter: ^7.0.7296
+  
+  # State Management
+  provider: ^6.0.5
+  
+  # HTTP Requests
+  http: ^1.1.0
+  dio: ^5.3.2
+  
+  # Local Storage
+  shared_preferences: ^2.2.2
+  
+  # Image Handling
+  cached_network_image: ^3.3.0
+  image_picker: ^1.0.4
+  
+  # Navigation
+  go_router: ^12.1.1
+  
+  # Crypto Payment
+  web3dart: ^2.7.3
+  
+  # Google Fonts
+  google_fonts: ^6.1.0
+  
+  # Utils
+  intl: ^0.18.1
+  uuid: ^4.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/fonts/
+  
+  fonts:
+    - family: NotoKufiArabic
+      fonts:
+        - asset: assets/fonts/NotoKufiArabic-Regular.ttf
+        - asset: assets/fonts/NotoKufiArabic-Bold.ttf
+          weight: 700
+    - family: ReemKufi
+      fonts:
+        - asset: assets/fonts/ReemKufi-Regular.ttf
+        - asset: assets/fonts/ReemKufi-Bold.ttf
+          weight: 700
+
